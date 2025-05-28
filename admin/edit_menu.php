@@ -2,7 +2,7 @@
 require_once '../functions.php';
 redirectIfNotAdmin();
 $id = intval($_GET['id'] ?? 0);
-$stmt = $pdo->prepare('SELECT * FROM menu_items WHERE id = ?');
+$stmt = $pdo->prepare('SELECT * FROM menu WHERE id = ?');
 $stmt->execute([
     $id
 ]);
@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = $_POST['nombre'];
     $descripcion = $_POST['descripcion'];
     $precio = $_POST['precio'];
-    $pdo->prepare('UPDATE menu_items SET nombre=?, descripcion=?, precio=? WHERE id=?')
+    $pdo->prepare('UPDATE menu SET nombre=?, descripcion=?, precio=? WHERE id=?')
          ->execute([$nombre, $descripcion, $precio, $id]);
     header('Location: menu_list.php');
     exit;

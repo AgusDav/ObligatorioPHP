@@ -15,11 +15,6 @@ CREATE TABLE menu (
     precio DECIMAL(10,2)
 );
 
-INSERT INTO usuarios (username, password, role) VALUES 
-('admin', '$2y$10$v1ElTLh/B7Ot7RI8jZ7Nu.JZq6xzZplZJxlDEa8GJW3IAb6Cv8Upa', 'admin'), -- admin123
-('cliente', '$2y$10$2a0YwzvAX99UWrqR3xQfZOSgUl/n2e98ZJgN3Z8et0JHd.7lWmPBW', 'cliente'); -- cliente123
-
-
 CREATE TABLE favoritos (
     user_id INT,
     menu_id INT,

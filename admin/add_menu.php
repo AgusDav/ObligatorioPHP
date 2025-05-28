@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = $_POST['nombre'];
     $descripcion = $_POST['descripcion'];
     $precio = $_POST['precio'];
-    $stmt = $pdo->prepare('INSERT INTO menu_items (nombre, descripcion, precio) VALUES (?, ?, ?)');
+    $stmt = $pdo->prepare('INSERT INTO menu (nombre, descripcion, precio) VALUES (?, ?, ?)');
     $stmt->execute([$nombre, $descripcion, $precio]);
     header('Location: menu_list.php');
     exit;

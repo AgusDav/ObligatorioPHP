@@ -3,7 +3,7 @@ session_start();
 
 // Conexión a la base de datos
 $host = 'localhost';
-$db   = 'restaurant_db';
+$db   = 'restaurante';
 $user = 'root';
 $pass = '';
 $charset = 'utf8mb4';

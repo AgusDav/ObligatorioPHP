@@ -1,19 +1,18 @@
 <?php
-session_start();
-include 'includes/db.php';
+require_once 'functions.php';
 if (!isset($_SESSION['user'])) { header("Location: login.php"); exit; }
 $user_id = $_SESSION['user']['id'];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $menu_id = $_POST['menu_id'];
     if (isset($_POST['add'])) {
-        $stmt = $conn->prepare("INSERT INTO favoritos (user_id, menu_id) VALUES (?, ?)");
+        $stmt = $pdo->prepare("INSERT INTO favoritos (user_id, menu_id) VALUES (?, ?)");
         $stmt->execute([$user_id, $menu_id]);
     } elseif (isset($_POST['remove'])) {
-        $stmt = $conn->prepare("DELETE FROM favoritos WHERE user_id = ? AND menu_id = ?");
+        $stmt = $pdo->prepare("DELETE FROM favoritos WHERE user_id = ? AND menu_id = ?");
         $stmt->execute([$user_id, $menu_id]);
     }
 }
-$stmt = $conn->prepare("SELECT m.* FROM favoritos f JOIN menu m ON f.menu_id = m.id WHERE f.user_id = ?");
+$stmt = $pdo->prepare("SELECT m.* FROM favoritos f JOIN menu m ON f.menu_id = m.id WHERE f.user_id = ?");
 $stmt->execute([$user_id]);
 $favoritos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>

@@ -1,7 +1,7 @@
 <?php
 require_once '../functions.php';
 redirectIfNotAdmin();
-$items = $pdo->query('SELECT * FROM menu_items')->fetchAll();
+$items = $pdo->query('SELECT * FROM menu')->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="es">

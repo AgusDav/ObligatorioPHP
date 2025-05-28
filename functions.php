@@ -43,3 +43,47 @@ function register($conn, $username, $password, $role) {
     $stmt = $conn->prepare("INSERT INTO usuarios (username, password, role) VALUES (?, ?, ?)");
     $stmt->execute([$username, $hashed, $role]);
 }
+
+function addFavorite(PDO $pdo, int $userId, int $itemId): void {
+    $stmt = $pdo->prepare("INSERT IGNORE INTO favoritos (user_id, menu_id) VALUES (?,?)");
+    $stmt->execute([$userId, $itemId]);
+}
+
+function removeFavorite(PDO $pdo, int $userId, int $itemId): void {
+    $stmt = $pdo->prepare("DELETE FROM favoritos WHERE user_id = ? AND item_id = ?");
+    $stmt->execute([$userId, $itemId]);
+}
+
+function getFavorites(PDO $pdo, int $userId): array {
+    $stmt = $pdo->prepare("SELECT menu_id FROM favoritos WHERE user_id = ?");
+    $stmt->execute([$userId]);
+    return array_column($stmt->fetchAll(), 'item_id');
+}
+
+function isFavorite(PDO $pdo, int $userId, int $itemId): bool {
+    $stmt = $pdo->prepare("SELECT 1 FROM favoritos WHERE user_id = ? AND item_id = ?");
+    $stmt->execute([$userId, $itemId]);
+    return (bool)$stmt->fetchColumn();
+}
+
+// — Carrito en sesión —
+function addCart(int $itemId): void {
+    if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = [];
+    }
+    if (!in_array($itemId, $_SESSION['cart'], true)) {
+        $_SESSION['cart'][] = $itemId;
+    }
+}
+
+function removeCart(int $itemId): void {
+    if (!empty($_SESSION['cart'])) {
+        $_SESSION['cart'] = array_values(
+            array_diff($_SESSION['cart'], [$itemId])
+        );
+    }
+}
+
+function getCart(): array {
+    return $_SESSION['cart'] ?? [];
+}
