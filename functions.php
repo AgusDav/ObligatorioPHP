@@ -87,3 +87,18 @@ function removeCart(int $itemId): void {
 function getCart(): array {
     return $_SESSION['cart'] ?? [];
 }
+
+function clearCart(): void {
+    $_SESSION['cart'] = [];
+}
+
+function isClient() {
+    return isLoggedIn() && $_SESSION['user']['role'] === 'cliente';
+}
+
+function redirectIfNotClient() {
+    if (!isClient()) {
+        header('Location: index.php');
+        exit;
+    }
+}
