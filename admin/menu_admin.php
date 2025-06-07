@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $items = getMenuItems($conn);
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head><title>Admin Menú</title></head>
 <body>
 <h2>Administrar Menú</h2>

@@ -38,7 +38,7 @@ if (isset($_GET['clear_cart']) && $_GET['clear_cart'] === '1' && isClient()) {
     exit;
 }
 
-// ④ Sorting y carga de items
+// Sorting y carga de items
 $sort = $_GET['sort'] ?? '';
 $orderSql = match($sort) {
     'price_asc'  => 'ORDER BY precio ASC',
@@ -49,7 +49,7 @@ $orderSql = match($sort) {
 };
 $items = $pdo->query("SELECT * FROM menu $orderSql")->fetchAll();
 
-// ⑤ Obtén favoritos y carrito actuales solo para clientes
+// Obtén favoritos y carrito actuales solo para clientes
 $favorites = isClient() ? getFavorites($pdo, $_SESSION['user']['id']) : [];
 $cart = isClient() ? getCart() : [];
 ?>
@@ -90,7 +90,7 @@ $cart = isClient() ? getCart() : [];
             </li>
             <li class="nav-item">
               <a class="nav-link" href="carrito.php">
-                Carrito 
+                Carrito
                 <?php if (!empty($cart)): ?>
                   <span class="badge bg-warning text-dark"><?= count($cart) ?></span>
                 <?php endif; ?>
