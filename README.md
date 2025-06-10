@@ -29,26 +29,14 @@ Aplicación web para la gestión de un restaurante desarrollada en PHP con MySQL
     - Verificar que se haya creado la base de datos restaurante
 3. Configurar conexión
     - Editar el archivo config.php si es necesario:
-    - php$host = 'localhost';
-    - $db   = 'restaurante';
-    - $user = 'root';
-    - $pass = '';
-4. Ejecutar la aplicación
-
-Copiar el proyecto a la carpeta htdocs de XAMPP
-Iniciar Apache y MySQL en XAMPP
-Abrir en el navegador: http://localhost/ObligatorioPHP
-
-## 👤 Usuarios de Prueba
-Administrador
-- Usuario: admin
-- Contraseña: admin
-- Permisos: Gestión completa del menú
-
-Cliente
-- Usuario: cliente
-- Contraseña: cliente
-- Permisos: Favoritos, carrito, visualización del menú
+        - php$host = 'localhost';
+        - $db   = 'restaurante';
+        - $user = 'root';
+        - $pass = '';
+4. Copiar el proyecto a la carpeta htdocs de XAMPP
+5. Iniciar Apache y MySQL en XAMPP
+6.  Ejecutar la aplicación
+7. Abrir en el navegador: http://localhost/ObligatorioPHP
 
 ## 🗃️ Estructura de la Base de Datos
 
